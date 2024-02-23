@@ -19,11 +19,13 @@ const connection = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    app.listen(port, () => {});
     console.log("connected to MongoDB.");
   } catch (error) {
     throw error;
   }
 };
+connection();
 
 //middlewares
 app.use(cors());
@@ -37,8 +39,4 @@ app.use("/toolzia/api/reviews/", reviewsRouter);
 
 app.get("/", async (req, res) => {
   res.send("Toolzia server.");
-});
-
-app.listen(port, () => {
-  connection();
 });
